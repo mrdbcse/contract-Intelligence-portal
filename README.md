@@ -8,52 +8,52 @@ This project demonstrates end-to-end **GenAI + cloud-native architecture**, desi
 
 ## 🚀 Features
 
-* 📂 **Multi-format ingestion**
+- 📂 **Multi-format ingestion**
   Upload PDF/DOCX contracts and RFPs (native or scanned).
 
-* 🔠 **OCR + parsing**
+- 🔠 **OCR + parsing**
 
-  * Text via `pdfplumber` / Textract
-  * Tables via Camelot / Textract Table API
-  * Images via Tesseract OCR + BLIP captioning
+  - Text via `pdfplumber` / Textract
+  - Tables via Camelot / Textract Table API
+  - Images via Tesseract OCR + BLIP captioning
 
-* 📊 **Table & image awareness**
+- 📊 **Table & image awareness**
   Answers can come from **tables** (exact row values) or **charts/images** (OCR/caption text).
 
-* 🔍 **Hybrid retrieval**
+- 🔍 **Hybrid retrieval**
 
-  * Dense semantic search (FAISS / Pinecone)
-  * Sparse search (BM25 for numbers & codes)
-  * Merged results with provenance
+  - Dense semantic search (FAISS / Pinecone)
+  - Sparse search (BM25 for numbers & codes)
+  - Merged results with provenance
 
-* 🤖 **RAG with citations**
+- 🤖 **RAG with citations**
 
-  * Powered by LangChain/LlamaIndex + LLM (OpenAI or local)
-  * Always cites **page number, table ID, or image caption**
+  - Powered by LangChain/LlamaIndex + LLM (OpenAI or local)
+  - Always cites **page number, table ID, or image caption**
 
-* ⚠️ **Clause detection & risk rules**
+- ⚠️ **Clause detection & risk rules**
 
-  * Auto-renewal, liability cap, termination notice
+  - Auto-renewal, liability cap, termination notice
 
-* 📝 **Executive summaries**
+- 📝 **Executive summaries**
   Auto-generate one-page contract briefs (PDF/Excel export).
 
-* 🖥️ **Frontend**
+- 🖥️ **Frontend**
   React + Tailwind UI with:
 
-  * Upload manager
-  * Chat interface
-  * Table/image viewer
+  - Upload manager
+  - Chat interface
+  - Table/image viewer
 
-* ☁️ **Production-ready infra**
+- ☁️ **Production-ready infra**
 
-  * FastAPI backend
-  * Docker + docker-compose
-  * Kubernetes (K8s) deployment
-  * AWS-ready (Textract, S3, Fargate, Pinecone)
-  * CI/CD with GitHub Actions
+  - FastAPI backend
+  - Docker + docker-compose
+  - Kubernetes (K8s) deployment
+  - AWS-ready (Textract, S3, Fargate, Pinecone)
+  - CI/CD with GitHub Actions
 
-* 📈 **Monitoring**
+- 📈 **Monitoring**
   Prometheus + Grafana dashboards (latency, query hits, ingestion time).
 
 ---
@@ -76,7 +76,7 @@ Backend API (FastAPI)
 Answer + Sources → UI
 ```
 
-## Folder Structure
+## 📂 Folder Structure
 
 ```text
 contract-intelligence-portal/
@@ -168,10 +168,10 @@ contract-intelligence-portal/
 
 ### Parsing Pipeline
 
-* Text chunks → embeddings
-* Table chunks → JSON + flattened text
-* Image chunks → OCR + captions
-* Metadata (doc\_id, page, bbox, type) stored for provenance
+- Text chunks → embeddings
+- Table chunks → JSON + flattened text
+- Image chunks → OCR + captions
+- Metadata (doc_id, page, bbox, type) stored for provenance
 
 ### Query Flow
 
@@ -186,29 +186,29 @@ contract-intelligence-portal/
 
 **Core**
 
-* FastAPI (backend API)
-* React + Tailwind (frontend)
-* LangChain / LlamaIndex (RAG orchestration)
-* SentenceTransformers / OpenAI embeddings
-* FAISS / Pinecone (vector DB)
-* BM25 (sparse retrieval)
-* PostgreSQL (structured metadata, table rows)
-* AWS Textract (OCR + table parsing)
-* BLIP / Tesseract (image OCR + captioning)
+- FastAPI (backend API)
+- React + Tailwind (frontend)
+- LangChain / LlamaIndex (RAG orchestration)
+- SentenceTransformers / OpenAI embeddings
+- FAISS / Pinecone (vector DB)
+- BM25 (sparse retrieval)
+- PostgreSQL (structured metadata, table rows)
+- AWS Textract (OCR + table parsing)
+- BLIP / Tesseract (image OCR + captioning)
 
 **Infra**
 
-* Docker + docker-compose
-* Kubernetes (K8s)
-* AWS S3 (document storage)
-* AWS ECS/Fargate (deployment)
-* AWS CDK / Terraform (IaC)
-* GitHub Actions (CI/CD)
+- Docker + docker-compose
+- Kubernetes (K8s)
+- AWS S3 (document storage)
+- AWS ECS/Fargate (deployment)
+- AWS CDK / Terraform (IaC)
+- GitHub Actions (CI/CD)
 
 **Monitoring**
 
-* Prometheus (metrics)
-* Grafana (dashboards)
+- Prometheus (metrics)
+- Grafana (dashboards)
 
 ---
 
@@ -286,9 +286,7 @@ Response:
 ```json
 {
   "answer": "Severity-1 initial response is 5 minutes (working hours) / 30 minutes (non-working). Source: SLA Table, page 87",
-  "sources": [
-    {"id": "123e4567_table_5", "page": 87, "type": "table"}
-  ]
+  "sources": [{ "id": "123e4567_table_5", "page": 87, "type": "table" }]
 }
 ```
 
@@ -302,61 +300,61 @@ pytest backend/app/tests
 
 Includes:
 
-* Ingestion tests (tables/images)
-* Retrieval tests (known SLA queries)
-* Golden-answer regression tests
+- Ingestion tests (tables/images)
+- Retrieval tests (known SLA queries)
+- Golden-answer regression tests
 
 ---
 
 ## 📊 Monitoring
 
-* Metrics: ingestion latency, embedding latency, retrieval recall, query latency
-* Run:
+- Metrics: ingestion latency, embedding latency, retrieval recall, query latency
+- Run:
 
 ```bash
 docker-compose -f infra/monitoring.yml up
 ```
 
-* View dashboards in Grafana → `http://localhost:3000`
+- View dashboards in Grafana → `http://localhost:3000`
 
 ---
 
 ## 🚀 Deployment
 
-* **AWS ECS/Fargate**: containerized backend + React frontend
-* **Kubernetes (K8s)**: scalable orchestration option
-* **S3**: document storage
-* **Textract**: OCR + tables
-* **Pinecone/Milvus**: managed vector DB
-* **Terraform/CDK**: reproducible infra
-* **GitHub Actions**: CI/CD (tests → build → deploy)
+- **AWS ECS/Fargate**: containerized backend + React frontend
+- **Kubernetes (K8s)**: scalable orchestration option
+- **S3**: document storage
+- **Textract**: OCR + tables
+- **Pinecone/Milvus**: managed vector DB
+- **Terraform/CDK**: reproducible infra
+- **GitHub Actions**: CI/CD (tests → build → deploy)
 
 ---
 
 ## 📚 Sample Queries
 
-* “Does this contract auto-renew?”
-* “What’s the initial response time for Severity-1?”
-* “Which reports can be exported from the system?”
-* “What’s the penalty for downtime > 5 hours?”
+- “Does this contract auto-renew?”
+- “What’s the initial response time for Severity-1?”
+- “Which reports can be exported from the system?”
+- “What’s the penalty for downtime > 5 hours?”
 
 ---
 
 ## 📈 Business Impact
 
-* ⏱️ Reduces **contract review time by \~80%**
-* ⚖️ Flags **hidden risks automatically** (renewals, liability caps, SLA penalties)
-* 📊 Generates **executive summaries** for partners/clients
-* 🔍 Provides **auditable answers** (citations to exact clauses, tables, charts)
+- ⏱️ Reduces **contract review time by \~80%**
+- ⚖️ Flags **hidden risks automatically** (renewals, liability caps, SLA penalties)
+- 📊 Generates **executive summaries** for partners/clients
+- 🔍 Provides **auditable answers** (citations to exact clauses, tables, charts)
 
 ---
 
 ## 📌 Roadmap
 
-* [ ] Fine-tune clause classifier (LayoutLMv3)
-* [ ] Add diffing/version control (contract updates)
-* [ ] Add role-based access control + PII redaction
-* [ ] Deploy multimodal LLM for better chart/diagram Q\&A
+- [ ] Fine-tune clause classifier (LayoutLMv3)
+- [ ] Add diffing/version control (contract updates)
+- [ ] Add role-based access control + PII redaction
+- [ ] Deploy multimodal LLM for better chart/diagram Q\&A
 
 ---
 
