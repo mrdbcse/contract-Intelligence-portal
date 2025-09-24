@@ -1,4 +1,3 @@
-cd contract-intelligence-portal
 mkdir infra
 cd infra
 touch docker-compose.yml

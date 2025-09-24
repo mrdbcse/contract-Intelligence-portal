@@ -1,4 +1,3 @@
-cd contract-intelligence-portal
 mkdir monitoring
 cd monitoring
 touch prometheus.yml

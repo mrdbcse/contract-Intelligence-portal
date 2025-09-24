@@ -1,4 +1,3 @@
-cd contract-intelligence-portal
 cd backend
 mkdir app tests
 touch requirements.txt Dockerfile
