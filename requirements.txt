@@ -1,3 +1,5 @@
 tiktoken
 torch 
 torchvision
+boto3
+python-dotenv
