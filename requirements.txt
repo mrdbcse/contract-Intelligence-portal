@@ -1,5 +1,11 @@
 tiktoken
+--extra-index-url https://download.pytorch.org/whl/cu129
 torch 
 torchvision
 boto3
 python-dotenv
+transformers 
+datasets 
+accelerate 
+sentence-transformers
+ipywidgets
