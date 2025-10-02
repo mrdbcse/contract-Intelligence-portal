@@ -10,3 +10,10 @@ accelerate
 sentence-transformers
 ipywidgets
 matplotlib
+botocore
+langchain
+langchain-aws
+langchain-community
+PyMuPDF
+tabula-py
+faiss-cpu
